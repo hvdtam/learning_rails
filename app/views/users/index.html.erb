@@ -1,0 +1,26 @@
+<h1>Users</h1>
+<div class="pull-right">
+  <%= link_to "Download as Excel", users_path(format: "xlsx"), class: "btn btn-primary" %>
+</div>
+<table class="table table-striped table-bordered">
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% UserDetail.all.each do |user_details| %>
+    <tr>
+      <td><%= user_details.id %></td>
+      <td><%= user_details.full_name %></td>
+      <td><%= user_details.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= form_tag users_import_path, multipart: true do %>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Upload" %>
+<% end %>

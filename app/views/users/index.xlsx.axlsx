@@ -1,0 +1,8 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Users") do |sheet|
+  # highlight_cell = style.add_style(bg_color: "EFC376")
+  # date_cell      = style.add_style(format_code: "yyy-mm-dd")
+  @user_details.each do |product|
+    sheet.add_row product.header [product.full_name, product.email]
+  end
+end

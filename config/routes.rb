@@ -23,6 +23,7 @@ Rails.application.routes.draw do
 
   resources :twitter_accounts
   resources :tweets
-
+  get "users", to: "users#index"
+  post "users/import", to: "users#import"
   root to: "main#index"
 end
