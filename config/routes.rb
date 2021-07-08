@@ -1,6 +1,8 @@
 # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
+  devise_for :users
+  get 'landing/index', to: 'landing#index'
   get "about", to: "about#index"
 
   get "password", to: "passwords#edit", as: :edit_password
@@ -23,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :twitter_accounts
   resources :tweets
+  resources :messages, only: [:new, :create]
   get "users", to: "users#index"
   post "users/import", to: "users#import"
   get "users/import", to: "users#index"
