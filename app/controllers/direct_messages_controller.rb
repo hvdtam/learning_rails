@@ -1,17 +1,11 @@
 class DirectMessagesController < ApplicationController
-  def index
-    @user_details = UserDetail.all
-    respond_to do |format|
-      format.html
-      format.xlsx {
-        response.headers['Content-Disposition'] = 'attachment'
-      }
-      format.csv { send_data @user_details.to_csv }
-    end
-  end
+  before_action :authenticate_user!
 
-  def import
-    count = UserDetail.import params[:file]
-    redirect_to users_path, notice: "Import #{count} users"
+  def show
+    users = [current_user, User.find(params[:id])]
+    @chatroom = Chatroom.direct_message_for_users(users)
+    @messages = @chatroom.messages.order(created_at: :desc).limit(100).reverse
+    @chatroom_user = current_user.chatroom_users.find_by(chatroom_id: @chatroom.id)
+    render "chatrooms/show"
   end
 end

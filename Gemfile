@@ -9,20 +9,22 @@ gem 'rails', '~> 6.1.4'
 gem 'pg'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
-# Bootstrap 5
-gem 'bootstrap', '~> 5.0.1'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails'
+gem "jquery-rails"
+# Bootstrap 4
+gem 'bootstrap', '~> 4.6.0'
 # Jquery
 gem 'jquery-rails'
 # Use SCSS for stylesheets
-gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
 gem 'webpacker', '~> 5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.7'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 4.0'
+gem 'redis'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'roo', '~> 2.8'
@@ -70,3 +72,7 @@ gem "omniauth-rails_csrf_protection", "~> 1.0"
 gem "twitter", "~> 7.0"
 
 gem "sidekiq", "~> 6.2"
+
+gem 'bootstrap-sass', '~> 3.3.6'
+gem 'autoprefixer-rails'
+gem 'sass-rails', '~> 5.0'

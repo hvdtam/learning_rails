@@ -1,19 +1,21 @@
 class MessagesController < ApplicationController
-  def new
-    @message = Message.new
-  end
+  before_action :authenticate_user!
+  before_action :set_chatroom
 
   def create
-    @message = Message.create(msg_params)
-    if @message.save
-      ActionCable.server.broadcast 'room_channel',
-                                   content: @message.content
-    end
+    message      = @chatroom.messages.new(message_params)
+    message.user = current_user
+    message.save
+    MessageRelayJob.perform_later(message)
   end
 
   private
 
-  def msg_params
-    params.require(:message).permit(:content)
+  def set_chatroom
+    @chatroom = Chatroom.find(params[:chatroom_id])
+  end
+
+  def message_params
+    params.require(:message).permit(:body)
   end
 end
