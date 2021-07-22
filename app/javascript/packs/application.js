@@ -9,9 +9,10 @@ import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import 'jquery'
 import 'bootstrap'
+import "../stylesheets/application"
 
 Rails.start()
-
+global.toastr = require("toastr")
 // Turbolinks.start()
 require("turbolinks").start()
 ActiveStorage.start()
