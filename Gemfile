@@ -7,6 +7,7 @@ ruby '2.6.3'
 gem 'rails', '~> 6.1.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
+gem 'pundit'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use CoffeeScript for .coffee assets and views
@@ -38,7 +39,12 @@ gem 'caxlsx_rails'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
+
+# RBAC library for Rails
 gem 'devise'
+gem 'rails_admin', git: 'https://github.com/sferik/rails_admin.git'
+gem 'cancancan'
+gem "store_attribute"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
