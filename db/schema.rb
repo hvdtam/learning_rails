@@ -49,44 +49,9 @@ ActiveRecord::Schema.define(version: 2021_07_30_090204) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tweets", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "twitter_account_id", null: false
-    t.text "body"
-    t.datetime "publish_at"
-    t.string "tweet_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["twitter_account_id"], name: "index_tweets_on_twitter_account_id"
-    t.index ["user_id"], name: "index_tweets_on_user_id"
-  end
-
-  create_table "twitter_accounts", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "name"
-    t.string "username"
-    t.string "image"
-    t.string "token"
-    t.string "secret"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_twitter_accounts_on_user_id"
-  end
-
-  create_table "user_details", force: :cascade do |t|
-    t.string "full_name"
-    t.string "email"
-    t.string "country"
-    t.integer "age"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", null: false
     t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -97,6 +62,8 @@ ActiveRecord::Schema.define(version: 2021_07_30_090204) do
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "username"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.boolean "superadmin_role"
     t.boolean "supervisor_role"
     t.boolean "user_role"
@@ -108,7 +75,4 @@ ActiveRecord::Schema.define(version: 2021_07_30_090204) do
   add_foreign_key "chatroom_users", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
-  add_foreign_key "tweets", "twitter_accounts"
-  add_foreign_key "tweets", "users"
-  add_foreign_key "twitter_accounts", "users"
 end

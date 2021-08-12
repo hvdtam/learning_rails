@@ -9,30 +9,9 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
   get 'landing/index', to: 'landing#index'
-  get 'about', to: 'about#index'
-
-  get 'password', to: 'passwords#edit', as: :edit_password
-  patch 'password', to: 'passwords#update'
-
-  get 'sign_up', to: 'registrations#new'
-  post 'sign_up', to: 'registrations#create'
-
-  get 'sign_in', to: 'sessions#new'
-  post 'sign_in', to: 'sessions#create'
-
-  delete 'logout', to: 'sessions#destroy'
-
-  get 'password/reset', to: 'password_resets#new'
-  post 'password/reset', to: 'password_resets#create'
-  get 'password/reset/edit', to: 'password_resets#edit'
-  patch 'password/reset/edit', to: 'password_resets#update'
 
   get '/auth/twitter/callback', to: 'omniauth_callbacks#twitter'
 
-  resources :twitter_accounts
-  resources :tweets
-  # resources :users_all
-  get 'users_all', to: 'users_all#index'
   resources :messages, only: [:new, :create]
   get 'users', to: 'users#index'
   post 'users/import', to: 'users#import'
