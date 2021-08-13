@@ -17,7 +17,12 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post
+      respond_to do |format|
+        format.html.tablet {
+          redirect_to @post, notice: "Post was successfully created ON PHONE"
+        }
+        redirect_to @post
+      end
     else
       render 'new'
     end

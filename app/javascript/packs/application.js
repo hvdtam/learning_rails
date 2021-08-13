@@ -19,3 +19,5 @@ ActiveStorage.start()
 $(document).on('turbolinks:load', function () {
     console.log("We are ready!")
 })
+import * as PlatformHelpers from "../src/platform_helpers"
+console.log(PlatformHelpers.isMobile)

@@ -15,6 +15,8 @@ gem 'coffee-rails'
 gem "jquery-rails"
 # Bootstrap 4
 gem 'bootstrap', '~> 4.6.0'
+# Blog Library
+gem 'simple_form'
 # Jquery
 gem 'jquery-rails'
 # Use SCSS for stylesheets
@@ -83,3 +85,4 @@ gem "sidekiq", "~> 6.2"
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'autoprefixer-rails'
 gem 'sass-rails', '~> 5.0'
+gem "browser", "~> 5.3"
