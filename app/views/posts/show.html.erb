@@ -1,0 +1,36 @@
+<% content_for :page_title, @post.title %>
+
+<section class="section">
+  <div class="container">
+    <nav class="level">
+      <div class="d-grid gap-2 d-md-block">
+        <%= link_to "Edit", edit_post_path(@post), class: "btn btn-info" %>
+        <%= link_to "Delete", post_path(@post), method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-danger" %>
+      </div>
+      <% if user_signed_in? %>
+        <% if @post.liked?(current_user) %>
+          <%= button_to "Like", like_path(@post), method: "put", disable: true %>
+        <% else %>
+          <%= button_to "Like", like_path(@post), method: "put" %>
+        <% end %>
+      <% end %>
+    </nav>
+    <hr/>
+
+    <div class="content">
+      <%= @post.content %>
+    </div>
+  </div>
+</section>
+
+<section class="section comments">
+  <div class="container">
+    <h5 class="subtitle is-5"><strong><%= @post.comments.count %></strong> Comments</h5>
+    <%= render @post.comments %>
+    <div class="comment-form">
+      <hr/>
+      <h5 class="subtitle is-3">Leave a reply</h5>
+      <%= render 'comments/form' %>
+    </div>
+  </div>
+</section>

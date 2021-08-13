@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_30_090204) do
+ActiveRecord::Schema.define(version: 2021_08_13_025408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,14 @@ ActiveRecord::Schema.define(version: 2021_07_30_090204) do
     t.boolean "direct_message", default: false
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "name"
+    t.text "comment"
+    t.string "created_by"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", id: :serial, force: :cascade do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
@@ -42,9 +50,26 @@ ActiveRecord::Schema.define(version: 2021_07_30_090204) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "roles", force: :cascade do |t|
     t.string "name"
     t.json "permissions"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_details", force: :cascade do |t|
+    t.string "full_name", default: "", null: false
+    t.string "dob"
+    t.string "age"
+    t.string "location"
+    t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
