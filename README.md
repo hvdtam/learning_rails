@@ -1,24 +1,62 @@
-# README
+# Project
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+I'm learning Rails on GoRails.com
 
-Things you may want to cover:
+## Install
 
-* Ruby version
+### Clone the repository
 
-* System dependencies
+```shell
+git clone git@github.com:hvdtam/learning_rails.git
+cd learning_rails
+```
 
-* Configuration
+### Application version
 
-* Database creation
+```shell
+Ruby 2.6.3
+Rails 6.1.4
+Bootstrap 4.6.0
+Jquery
+Coffee
+```
 
-* Database initialization
+### Install dependencies
 
-* How to run the test suite
+Using [Bundler](https://github.com/bundler/bundler) and [Yarn](https://github.com/yarnpkg/yarn):
 
-* Services (job queues, cache servers, search engines, etc.)
+```shell
+bundle install && yarn install
+```
 
-* Deployment instructions
+### Initialize the database
 
-* ...
+```shell
+rake db:migrate
+```
+
+## Serve
+
+```shell
+rails s
+```
+## FEATURES
+### User (Devise)
+- Sign in
+- Sign up
+- RBAC
+### Import
+- Import Excel using Form
+- Export Excel
+### Blog
+- CRUD
+- Comment
+### Chat rooms
+- Create Room
+- Direct Messages
+### Roles
+- CRUD Role
+### Rails
+- Reduces boot times through caching
+### Background Job
+- Sidekiq
