@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_032718) do
+ActiveRecord::Schema.define(version: 2021_08_15_152544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,16 @@ ActiveRecord::Schema.define(version: 2021_08_13_032718) do
     t.integer "post_id"
   end
 
+  create_table "districts", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "codename"
+    t.string "division_type"
+    t.string "province_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", id: :serial, force: :cascade do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
@@ -54,6 +64,16 @@ ActiveRecord::Schema.define(version: 2021_08_13_032718) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "provinces", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "division_type"
+    t.string "phone_code"
+    t.string "codename"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -95,6 +115,16 @@ ActiveRecord::Schema.define(version: 2021_08_13_032718) do
     t.boolean "user_role"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wards", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.string "division_type"
+    t.string "codename"
+    t.string "district_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "chatroom_users", "chatrooms"
