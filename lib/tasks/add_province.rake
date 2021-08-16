@@ -2,7 +2,7 @@ namespace :add_provinces do
   require 'net/http'
   desc 'Get a Districts'
   task execute: [:environment] do
-    source = 'https://provinces.open-api.vn/api/p'
+    source = 'https://provinces.open-api.vn/api/p/'
     resp   = Net::HTTP.get_response(URI.parse(source))
     data   = resp.body
     result = JSON.parse(data)

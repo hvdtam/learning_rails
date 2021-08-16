@@ -93,9 +93,9 @@ GEM
       autoprefixer-rails (>= 9.1.0)
       popper_js (>= 1.14.3, < 2)
       sassc-rails (>= 2.0.0)
-    bootstrap-sass (3.4.1)
+    bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
-      sassc (>= 2.0.0)
+      sass (>= 3.3.4)
     browser (5.3.1)
     buftok (0.2.0)
     builder (3.2.4)
@@ -136,9 +136,36 @@ GEM
       warden (~> 1.2.3)
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
+    elasticsearch (7.14.0)
+      elasticsearch-api (= 7.14.0)
+      elasticsearch-transport (= 7.14.0)
+    elasticsearch-api (7.14.0)
+      multi_json
+    elasticsearch-transport (7.14.0)
+      faraday (~> 1)
+      multi_json
     equalizer (0.0.11)
     erubi (1.10.0)
     execjs (2.8.1)
+    faraday (1.7.0)
+      faraday-em_http (~> 1.0)
+      faraday-em_synchrony (~> 1.0)
+      faraday-excon (~> 1.1)
+      faraday-httpclient (~> 1.0.1)
+      faraday-net_http (~> 1.0)
+      faraday-net_http_persistent (~> 1.1)
+      faraday-patron (~> 1.0)
+      faraday-rack (~> 1.0)
+      multipart-post (>= 1.2, < 3)
+      ruby2_keywords (>= 0.0.4)
+    faraday-em_http (1.0.0)
+    faraday-em_synchrony (1.0.0)
+    faraday-excon (1.1.0)
+    faraday-httpclient (1.0.1)
+    faraday-net_http (1.0.1)
+    faraday-net_http_persistent (1.2.0)
+    faraday-patron (1.0.0)
+    faraday-rack (1.0.0)
     ffi (1.15.3)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -199,6 +226,7 @@ GEM
     mini_portile2 (2.5.3)
     minitest (5.14.4)
     msgpack (1.4.2)
+    multi_json (1.15.0)
     multipart-post (2.1.1)
     naught (1.1.0)
     nested_form (0.3.2)
@@ -280,6 +308,7 @@ GEM
     roo (2.8.3)
       nokogiri (~> 1)
       rubyzip (>= 1.3.0, < 3.0.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     sass (3.7.4)
       sass-listen (~> 4.0.0)
@@ -300,6 +329,10 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
+    searchkick (3.1.3)
+      activemodel (>= 4.2)
+      elasticsearch (>= 5)
+      hashie
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
@@ -378,7 +411,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.4)
   bootstrap (~> 4.6.0)
-  bootstrap-sass
+  bootstrap-sass (~> 3.3.6)
   browser (~> 5.3)
   byebug
   cancancan
@@ -401,6 +434,7 @@ DEPENDENCIES
   redis
   roo (~> 2.8)
   sass-rails (~> 5.0)
+  searchkick (~> 3.1, >= 3.1.2)
   selenium-webdriver
   sidekiq (~> 6.2)
   simple_form
