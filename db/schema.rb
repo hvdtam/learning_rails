@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_15_152544) do
+ActiveRecord::Schema.define(version: 2021_08_16_142205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,6 +51,12 @@ ActiveRecord::Schema.define(version: 2021_08_15_152544) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "messages", id: :serial, force: :cascade do |t|
     t.integer "chatroom_id"
     t.integer "user_id"
@@ -76,6 +82,15 @@ ActiveRecord::Schema.define(version: 2021_08_15_152544) do
     t.string "codename"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "recordings", force: :cascade do |t|
+    t.bigint "location_id", null: false
+    t.integer "temp"
+    t.string "status"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["location_id"], name: "index_recordings_on_location_id"
   end
 
   create_table "roles", force: :cascade do |t|
@@ -131,4 +146,5 @@ ActiveRecord::Schema.define(version: 2021_08_15_152544) do
   add_foreign_key "chatroom_users", "users"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "recordings", "locations"
 end
