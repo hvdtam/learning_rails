@@ -86,3 +86,5 @@ gem "sidekiq", "~> 6.2"
 
 gem 'autoprefixer-rails'
 gem "browser", "~> 5.3"
+
+gem "friendly_id", "~> 5.4"

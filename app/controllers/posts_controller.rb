@@ -1,62 +1,79 @@
 class PostsController < ApplicationController
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+
+  # GET /posts
+  # GET /posts.json
   def index
-    @posts = Post.all.order("created_at DESC")
+    @posts = Post.all
   end
 
+  # GET /posts/1
+  # GET /posts/1.json
+  def show
+  end
+
+  # GET /posts/new
   def new
     @post = Post.new
   end
 
-  # def like
-  #   @post = Post.all.find(post_params)
-  #   Like.create(user_id: current_user.id, post_id: @post.id)
-  #   redirect_to posts_path(@post)
-  # end
+  # GET /posts/1/edit
+  def edit
+  end
 
+  # POST /posts
+  # POST /posts.json
   def create
     @post = Post.new(post_params)
 
-    if @post.save
-      respond_to do |format|
-        format.html.tablet {
-          redirect_to @post, notice: "Post was successfully created ON PHONE"
-        }
-        redirect_to @post
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
+      else
+        format.html { render :new }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
-    else
-      render 'new'
     end
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
-
+  # PATCH/PUT /posts/1
+  # PATCH/PUT /posts/1.json
   def update
-    @post = Post.find(params[:id])
-
-    if @post.update(post_params)
-      redirect_to @post
-    else
-      render 'edit'
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to @post, notice: 'Post was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
-
+  # DELETE /posts/1
+  # DELETE /posts/1.json
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
-
-    redirect_to posts_path
-
+    respond_to do |format|
+      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.json { head :no_content }
+    end
   end
 
   private
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.friendly.find(params[:id])
 
+    # "hello-world" => "hello-world-2"
+    if params[:id] != @post.slug
+      redirect_to @post, status: :moved_permanently
+    end
+  end
+
+  # Only allow a list of trusted parameters through.
   def post_params
-    params.require(:post).permit(:title, :content)
+    params.require(:post).permit(:title, :slug, :content)
   end
 end
